@@ -3,8 +3,9 @@
 :root {
     --background-color: #F7ECDE;
     --circle-fill: #E9DAC1;
-    --progress-empty: #9ED2C6;
+    --progress-empty: #ccebe3;
     --progress-fill: #54BAB9;
+    --button-disabled: #9ED2C6;
 }
 
 * {
@@ -107,6 +108,6 @@ body {
 }
 
 .btn:disabled {
-    background-color: var(--progress-empty);
+    background-color: var(--button-disabled);
     cursor: not-allowed;
 }
