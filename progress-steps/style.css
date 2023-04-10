@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap');
+
+:root {
+    --background-color: #F7ECDE;
+    --circle-fill: #E9DAC1;
+    --progress-empty: #9ED2C6;
+    --progress-fill: #54BAB9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+/*Container uses position: relative to allow child to be absolute (relative to its parent) */
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative; 
+    margin-bottom: 30px;
+    max-width: 100%;
+    width: 500px;
+}
+
+
+/*
+- Position absolute allows to put progress bar in middle using top and transform
+- z-index change "layer" of div and puts it behind the container (only works on positioned elements)
+ */
+.progress {
+    background-color: var(--progress-fill);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 5px;
+    width: 0%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+
+/* The pseudo class ::before is used to create the unfilled bar behind, which is a copy of the previous with different color and full width */
+
+.progress-container::before {
+    content: '';
+    background-color: var(--progress-empty);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 5px;
+    width: 100%;
+    z-index: -1;
+}
+
+.step {
+    background-color: var(--circle-fill);
+    border: 5px solid var(--progress-empty);
+    color: var(--progress-fill);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .4s ease;
+}
+
+.step.active {
+    border: 5px solid var(--progress-fill);
+}
+
+.btn {
+    background-color: var(--progress-fill);
+    color: var(--background-color);
+    font-size: 0.9rem;
+    border: none; 
+    border-radius: 10px;
+    font-family: inherit;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+
+}
+
+.btn:active {
+    transform: scale(0.98)
+}
+
+.btn:focus {
+    outline: 0;
+}
+
+.btn:disabled {
+    background-color: var(--progress-empty);
+    cursor: not-allowed;
+}
